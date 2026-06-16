@@ -8,7 +8,7 @@ export default defineConfig({
     port: 3000,
     proxy: {
       '/transactions': {
-        target: 'http://backend:8000',
+        target: 'http://blossom_backend:80',
         changeOrigin: true,
       }
     }
