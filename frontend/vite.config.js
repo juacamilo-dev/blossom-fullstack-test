@@ -1,5 +1,5 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
 
 export default defineConfig({
   plugins: [react()],
@@ -7,10 +7,10 @@ export default defineConfig({
     host: true,
     port: 3000,
     proxy: {
-      '/transactions': {
-        target: 'http://blossom_backend:80',
+      "/transactions": {
+        target: "http://172.18.0.4:80",
         changeOrigin: true,
-      }
-    }
-  }
-})
+      },
+    },
+  },
+});

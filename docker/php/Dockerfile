@@ -1,9 +1,8 @@
-FROM php:8.2-apache
+FROM php:8.2-fpm
 
 RUN apt-get update && apt-get install -y \
     libmariadb-dev \
-    && docker-php-ext-install pdo pdo_mysql \
-    && a2enmod rewrite
+    && docker-php-ext-install pdo pdo_mysql
 
 WORKDIR /var/www/html
 

@@ -24,8 +24,6 @@ services:
       dockerfile: ../docker/php/Dockerfile
     container_name: blossom_backend
     restart: always
-    ports:
-      - "8000:80"
     volumes:
       - ./backend:/var/www/html
     depends_on:
@@ -35,6 +33,20 @@ services:
       DB_NAME: blossom_transactions
       DB_USER: blossom_user
       DB_PASS: blossom_pass
+    networks:
+      - blossom_network
+
+  nginx:
+    image: nginx:alpine
+    container_name: blossom_nginx
+    restart: always
+    ports:
+      - "8000:80"
+    volumes:
+      - ./backend:/var/www/html
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - backend
     networks:
       - blossom_network
 
@@ -50,7 +62,7 @@ services:
       - ./frontend:/app
       - /app/node_modules
     depends_on:
-      - backend
+      - nginx
     networks:
       - blossom_network
 
