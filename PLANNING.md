@@ -52,11 +52,11 @@ blossom-fullstack-test/
 **Estimated time:** 6 hours
 **Status:** ✅ Completed
 
-- [x] Create Dockerfile for PHP backend
+- [x] Create Dockerfile for PHP backend (PHP-FPM)
 - [x] Create Dockerfile for React frontend
 - [x] Create MySQL container configuration
-- [x] Create docker-compose.yml with 3 containers (backend, frontend, database)
-- [x] Configure Nginx as web server
+- [x] Create docker-compose.yml with 4 containers (backend, frontend, nginx, database)
+- [x] Configure Nginx as web server with PHP-FPM
 - [x] Test full Docker setup end to end
 - [x] Document setup instructions in README.md
 
@@ -124,7 +124,7 @@ blossom-fullstack-test/
 
 - [x] Create transactions.csv file with test data
 - [x] Build CSV import script in PHP
-- [x] Run import of 500,000 to 1,000,000 rows
+- [x] Run import of 800,000 rows (within 500k-1M range)
 - [x] Measure import performance and query times
 - [x] Document results and limitations in PERFORMANCE.md
 
@@ -147,7 +147,24 @@ blossom-fullstack-test/
 
 ---
 
-### Task 8 — Documentation & Final Delivery
+### Task 8 — Unit Tests
+**Estimated time:** 4 hours
+**Status:** ✅ Completed
+
+- [x] Install PHPUnit via Composer
+- [x] Configure phpunit.xml
+- [x] Write tests for GET /transactions
+- [x] Write tests for POST /transactions
+- [x] Write tests for DELETE /transactions/{id}
+- [x] Write tests for validation errors
+- [x] Run full test suite: 9 tests, 34 assertions, 0 failures
+
+**Dependencies:** Task 4
+**Resources:** PHPUnit documentation
+
+---
+
+### Task 9 — Documentation & Final Delivery
 **Estimated time:** 4 hours
 **Status:** ✅ Completed
 
@@ -173,7 +190,7 @@ blossom-fullstack-test/
 | Day 3 | June 14-15 | Task 4 (PHP API continued) |
 | Day 4 | June 15-16 | Task 5 (React Frontend) |
 | Day 5 | June 16-17 | Task 5 (React continued), Task 6 (Performance) |
-| Day 6 | June 17-18 | Task 7 (Code Review), Task 8 (Documentation) |
+| Day 6 | June 17-18 | Task 7 (Code Review), Task 8 (Unit Tests) |
 | Day 7 | June 18-19 | Final testing, fixes and delivery |
 
 ---
@@ -183,10 +200,11 @@ blossom-fullstack-test/
 | Layer | Technology |
 |-------|-----------|
 | Frontend | React 18, Vite, CSS3 |
-| Backend | PHP 8.2, PDO |
+| Backend | PHP 8.2, PHP-FPM, PDO |
 | Database | MySQL 8.0 |
-| Web Server | Apache (via php:8.2-apache image) |
-| Containerization | Docker, Docker Compose |
+| Web Server | Nginx |
+| Containerization | Docker, Docker Compose (4 containers) |
+| Testing | PHPUnit 11 (9 tests, 34 assertions) |
 | Version Control | Git, GitHub |
 
 ---
@@ -194,8 +212,8 @@ blossom-fullstack-test/
 ## Known Limitations & Risks
 
 - PHP and Docker are new technologies for the developer, learning curve expected
-- Unit tests (PHPUnit) not implemented due to time constraints
-- Performance benchmark completed at 500,000 rows (1,160 rows/second). Estimated 1M rows ~14-15 minutes. Full results in PERFORMANCE.md
+- Unit tests implemented with PHPUnit 11: 9 tests, 34 assertions, all passing
+- Performance benchmark completed at 800,000 rows (1,137 rows/second). Full results in PERFORMANCE.md
 - Laravel/Symfony framework not used; plain PHP with PDO instead
 - Code review performed on backend/routes/transactions.php as txnExportService.php was not provided by Blossom
 
