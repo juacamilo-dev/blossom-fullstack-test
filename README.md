@@ -59,16 +59,19 @@ This single command will:
 ## Running Unit Tests
 
 ```bash
+# First install PHP dependencies
+docker exec blossom_backend composer install
+
+# Then run the test suite
 docker exec blossom_backend ./vendor/bin/phpunit
 ```
 
 Expected output:
+```
 PHPUnit 11.5.55 by Sebastian Bergmann and contributors.
-
 .........                         9 / 9 (100%)
-
 OK (9 tests, 34 assertions)
----
+```
 
 ## API Endpoints
 
